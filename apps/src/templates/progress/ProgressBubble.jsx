@@ -13,7 +13,7 @@ import {
   getBubbleUrl
 } from './BubbleFactory';
 import {levelProgressStyle} from './progressStyles';
-import {BubbleBadgeWrapper, AssessmentBadge} from './BubbleBadge';
+import BubbleBadge, {BadgeType} from './BubbleBadge';
 
 /**
  * A ProgressBubble represents progress for a specific level. It can be a circle
@@ -84,10 +84,12 @@ export default class ProgressBubble extends React.Component {
         classNames={getBubbleClassNames(this.isClickable())}
       >
         {content}
-        {isLevelAssessment(level) && !smallBubble && (
-          <BubbleBadgeWrapper isDiamond={level.isConceptLevel}>
-            <AssessmentBadge />
-          </BubbleBadgeWrapper>
+        {isLevelAssessment(level) && (
+          <BubbleBadge
+            badgeType={BadgeType.assessment}
+            bubbleSize={bubbleSize}
+            bubbleShape={shape}
+          />
         )}
       </BasicBubble>
     );
